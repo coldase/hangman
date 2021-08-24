@@ -9,11 +9,16 @@ from draws import get_case
 class Hangman:
 	def __init__(self):
 		self.game_on = True
-		self.words = ["cat", "computer", "tablet"]
+		self.words = []
 		self.health = 6
 		self.word = ""
 		self.hidden_word = ""
 		self.guessed_letters = []
+
+	def generate_words(self):
+		with open('word_list.txt', 'r') as f:
+			for word in f.readlines():
+				self.words.append(word.replace("\n", ""))
 
 	def clear(self, case=1):
 		if case == 1:
@@ -41,6 +46,7 @@ class Hangman:
 		self.clear(2)
 		ask_wannaplay = input("Do you wanna play Hangman? (y/n)> ")
 		if ask_wannaplay == "y":
+			self.generate_words()
 			self.clear()
 			self.word = self.get_random_word()
 			self.update_secret()
@@ -61,9 +67,9 @@ class Hangman:
 						self.clear()
 						continue
 			if self.hidden_word == self.word:
-				print("Grats, you win")
+				print(f"Grats, you win, word was -> {self.word.upper()}")
 			elif self.health <= 0:
-				print("You run out of guesses")
+				print(f"You run out of guesses, word was -> {self.word.upper()}")
 
 		else:
 			print("Thanks for trying")

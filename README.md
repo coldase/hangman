@@ -1,4 +1,3 @@
-## Hangman
-
-# Play hangman on terminal
+# Hangman
+## Play hangman on terminal
 

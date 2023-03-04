@@ -1,2 +1,4 @@
-## cli hangman
+## Hangman
+
+# Play hangman on terminal
 
